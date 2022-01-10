@@ -18,4 +18,8 @@ public class PizzaService {
 		return repo.findAll(Sort.by("name"));
 	}
 	
+	public Pizza save(Pizza p) {
+		return repo.save(p);
+	}
+	
 }

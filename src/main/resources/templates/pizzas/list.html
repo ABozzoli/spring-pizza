@@ -20,14 +20,14 @@
 					<tr>
 						<th>Pizza</th>
 						<th>Price</th>
-						<th>Igredients</th>
+						<th>Description</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="item : ${list}">
 						<td th:text="${item.name}"></td>
 						<td th:text="${item.price}"></td>
-						<td th:text="${item.ingredients}"></td>
+						<td th:text="${item.description}"></td>
 					</tr>
 				</tbody>
 			</table>
