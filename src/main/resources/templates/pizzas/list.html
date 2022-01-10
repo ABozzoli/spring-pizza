@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>
+		<title>Pizzas menù</title>
+	</head>
+	<body>
+		<!-- container -->
+		<div class="container">
+			<h1>Pizzas menù</h1>
+			<hr/>
+			
+			<!-- button "add" -->
+			<div class="mb-3">
+				<a class="btn btn-primary" th:href="@{/pizzas/add}">Add new pizza</a>
+			</div >
+			
+			<!-- table -->
+			<table class="table" th:if="${list.size() > 0}"> <!-- mostra solo se elementi in lista -->
+				<thead>
+					<tr>
+						<th>Pizza</th>
+						<th>Price</th>
+						<th>Igredients</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${list}">
+						<td th:text="${item.name}"></td>
+						<td th:text="${item.price}"></td>
+						<td th:text="${item.ingredients}"></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- alert if empty -->
+			<div class="alert alert-warning" role="alert" th:unless="${list.size() > 0}">
+				The pizza was a lie!
+			</div>
+		</div>
+		
+		<!-- scripts -->
+		<div th:replace="fragments/resources :: scripts"></div>
+	</body>
+</html>
