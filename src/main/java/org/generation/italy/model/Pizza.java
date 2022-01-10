@@ -1,9 +1,12 @@
 package org.generation.italy.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,6 +22,9 @@ public class Pizza {
 	
 	@NotNull
 	private float price;
+	
+	@ManyToMany
+	private List<Ingredient> ingredients;
 	
 	// getters/setters
 	public Integer getId() {
@@ -45,5 +51,11 @@ public class Pizza {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-		
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+	
 }
