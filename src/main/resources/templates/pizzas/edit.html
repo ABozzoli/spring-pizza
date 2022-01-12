@@ -13,8 +13,14 @@
 			<form
 				id="pizza-form"
 				th:object="${pizza}"
-				th:action="@{/pizzas/edit}"
-				method="POST">
+				th:action="${edit} ? @{/pizzas/edit/{id}(id=${pizza.id})} : @{/pizzas/create}"
+				method="POST"> <!-- operazione ternaria per fargli capire se è un create o un update -->
+				
+				<!-- validazione -->
+				<ul>
+					<!-- itera su tutti errori form -->
+					<li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="text-danger"></li>
+				</ul>
 				
 				<!-- campi form -->
 				<div class="row">

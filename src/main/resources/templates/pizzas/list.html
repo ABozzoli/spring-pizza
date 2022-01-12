@@ -11,8 +11,13 @@
 			
 			<!-- button "add" -->
 			<div class="mb-3">
-				<a class="btn btn-primary" th:href="@{/pizzas/edit}">Add new pizza</a>
-			</div >
+				<a class="btn btn-primary" th:href="@{/pizzas/create}">Add new pizza</a>
+			</div>
+			
+			<!-- success message -->
+			<th:block th:if="${successMessage != null}">
+				<div th:text="${successMessage}" class="alert alert-success" role="alert"></div>
+			</th:block>
 			
 			<!-- table -->
 			<table class="table" th:if="${list.size() > 0}"> <!-- mostra solo se elementi in lista -->
@@ -30,6 +35,7 @@
 						<td th:text="${item.price}"></td>
 						<td th:text="${item.description}"></td>
 						<td>
+							<a class="me-1" th:href="@{|/pizzas/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
 							<a class="me-2" th:href="@{|/pizzas/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
 						</td>
 					</tr>

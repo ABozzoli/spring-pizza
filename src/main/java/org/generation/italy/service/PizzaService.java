@@ -22,6 +22,10 @@ public class PizzaService {
 		return repo.save(p);
 	}
 	
+	public Pizza getById(Integer id) {
+		return repo.getById(id);
+	}
+	
 	// delete
 	public void deleteById(Integer id) {
 		repo.deleteById(id);
