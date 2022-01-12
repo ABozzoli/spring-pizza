@@ -57,7 +57,7 @@ public class PizzaController {
 		return "redirect:/pizzas";
 	}
 	
-	// GET (update) // uguale a create solo che modifica esistente invece di nuovo Pizza
+	// GET (update) // uguale a create solo che modifica esistente invece di nuova Pizza
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true); // per far capire alla form se è un create o un update

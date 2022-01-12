@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,10 +19,12 @@ public class Pizza {
 	private Integer id;
 	
 	@NotNull
+	@NotEmpty(message="name is madatory")
 	private String name;
 	private String description;
 	
 	@NotNull
+	@Min(value=5)
 	private float price;
 	
 	@ManyToMany
