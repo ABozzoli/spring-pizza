@@ -9,9 +9,24 @@
 			<h1>Pizzas menù</h1>
 			<hr/>
 			
-			<!-- button "add" -->
-			<div class="mb-3">
-				<a class="btn btn-primary" th:href="@{/pizzas/create}">Add new pizza</a>
+			<!-- wrapper add+search -->
+			<div class="d-flex">
+			
+				<!-- button "add" -->
+				<div class="mb-3">
+					<a class="btn btn-primary" th:href="@{/pizzas/create}">Add new pizza</a>
+				</div>
+				
+				<!-- vuoto al centro -->
+				<div class="flex-grow-1"></div >
+				
+				<!-- searchbar -->
+				<form class="col-3" th:action="@{/pizzas}" method="GET">
+					<div class="input-group"> <!-- quando dai una submit fai un GET a /book e passagli {keyword} -->
+						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+					</div>
+				</form>
 			</div>
 			
 			<!-- success message -->

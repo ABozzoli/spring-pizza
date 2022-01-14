@@ -18,6 +18,11 @@ public class PizzaService {
 		return repo.findAll(Sort.by("name"));
 	}
 	
+	// search
+	public List<Pizza> findByKeywordSortedByName(String keyword) {
+		return repo.findByNameContainingIgnoreCaseOrderByName(keyword);
+	}
+	
 	public Pizza save(Pizza p) {
 		return repo.save(p);
 	}
