@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<!-- searchbar -->
+		<th:block th:fragment="searchbar">
+			<form class="col-3 align-self-center mb-0" th:action="@{/pizzas}" method="GET">
+				<div class="input-group">
+					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+				</div>
+			</form>
+		</th:block>
+		
+		<!-- success message -->
+		<div th:fragment="successMessage(message)" class="alert alert-success alert-dismissible fade show" role="alert">
+			<span th:text="${message}"></span>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	</body>
+</html>
