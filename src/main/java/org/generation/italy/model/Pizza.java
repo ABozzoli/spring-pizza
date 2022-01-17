@@ -1,5 +1,6 @@
 package org.generation.italy.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,13 +20,13 @@ public class Pizza {
 	private Integer id;
 	
 	@NotNull
-	@NotEmpty(message="name is madatory")
+	@NotEmpty(message="Name is madatory")
 	private String name;
 	private String description;
 	
 	@NotNull
 	@Min(value=5)
-	private float price;
+	private BigDecimal price;
 	
 	@ManyToMany
 	private List<Ingredient> ingredients;
@@ -49,10 +50,10 @@ public class Pizza {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public List<Ingredient> getIngredients() {

@@ -46,14 +46,17 @@
 							</div>
 							<div class="col-6">
 								<label class="form-label" for="price">Price</label>
-								<input type="number" class="form-control" id="price" th:field="*{price}">
+								<input type="number" class="form-control" step="0.50" id="price" th:field="*{price}">
 							</div>
 							<div class="col-12">
 								<label class="form-label" for="description">Description</label>
 								<textarea class="form-control" id="description" th:field="*{description}" rows="6"></textarea>
 							</div>
+							
+							<!-- buttons -->
 							<div class="col-12 mt-3">
-								<button class="btn btn-primary" type="submit">Save</button> <!-- usiamo button (più adatto per form) -->
+								<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i> Save</button>
+								<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-times"></i> Cancel</a>
 							</div>
 						</div>
 					</div>

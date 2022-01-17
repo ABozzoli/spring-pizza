@@ -19,8 +19,8 @@ public class PizzaService {
 	}
 	
 	// search
-	public List<Pizza> findByKeywordSortedByName(String keyword) {
-		return repo.findByNameContainingIgnoreCaseOrderByName(keyword);
+	public List<Pizza> findByKeywordSortedById(String keyword) {
+		return repo.findByNameContainingIgnoreCaseOrderById(keyword);
 	}
 	
 	public Pizza save(Pizza p) {

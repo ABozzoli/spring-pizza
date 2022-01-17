@@ -34,7 +34,7 @@ public class PizzaController {
 		List<Pizza> result;
 		if(keyword != null && !keyword.isEmpty()) {
 			model.addAttribute("search", true);
-			result = service.findByKeywordSortedByName(keyword);
+			result = service.findByKeywordSortedById(keyword);
 			model.addAttribute("keyword", keyword);
 		} else {
 			model.addAttribute("search", false);
@@ -49,7 +49,7 @@ public class PizzaController {
 	public String create(Model model) {
 		model.addAttribute("edit", false); // per far capire alla form se è un create o un update
 		model.addAttribute("pizza", new Pizza()); // crea oggetto Pizza vuoto da riempire tramite form
-		model.addAttribute("ingredientList", ingredientService.findAllSortByIngredient());
+		model.addAttribute("ingredientList", ingredientService.findAllSortById());
 		return "/pizzas/edit";
 	}
 	
@@ -60,7 +60,7 @@ public class PizzaController {
 		// se ci sono errori ritorna alla form
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
-			model.addAttribute("ingredientList", ingredientService.findAllSortByIngredient());
+			model.addAttribute("ingredientList", ingredientService.findAllSortById());
 			return "/pizzas/edit";
 		}
 		// se non ci sono errori salva i dati
@@ -74,7 +74,7 @@ public class PizzaController {
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true); // per far capire alla form se è un create o un update
 		model.addAttribute("pizza", service.getById(id)); // passa pizza esistente a partire da id
-		model.addAttribute("ingredientList", ingredientService.findAllSortByIngredient()); // passa tutti gli ingredienti
+		model.addAttribute("ingredientList", ingredientService.findAllSortById()); // passa tutti gli ingredienti
 		return "/pizzas/edit";
 	}
 	
@@ -85,7 +85,7 @@ public class PizzaController {
 		// se ci sono errori ritorna alla form
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
-			model.addAttribute("ingredientList", ingredientService.findAllSortByIngredient());
+			model.addAttribute("ingredientList", ingredientService.findAllSortById());
 			return "/pizzas/edit";
 		}
 		// se non ci sono errori salva i dati
