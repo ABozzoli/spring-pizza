@@ -1,12 +1,24 @@
 <html>
 	<head>
 		<div th:replace="fragments/resources :: headTags"></div>
-		<title>Insert new pizza</title>
+		<title th:text="${edit} ? 'Update pizza' : 'Insert new pizza'"></title>
 	</head>
 	<body>
 		<!-- container -->
 		<div class="container">
-			<h1>Insert new pizza</h1>
+			
+			<!-- header -->
+			<div class="row mt-3">
+			
+				<!-- title V2 -->
+				<div class="col">
+					<h1><a th:href="@{/}"><i class="fas fa-arrow-circle-left"></i></a>
+					<span th:text="${edit} ? 'Update pizza' : 'Insert new pizza'"></span></h1>
+				</div>
+				
+				<!-- searchbar -->
+				<div th:replace="fragments/resources :: searchbar"></div>
+			</div>
 			<hr/>
 			
 			<!-- form -->

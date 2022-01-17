@@ -1,61 +1,45 @@
 <html>
 	<head>
 		<div th:replace="fragments/resources :: headTags"></div>
-		<title>Pizzas menù</title>
+		<title th:text="${search} ? |Search result for: '${keyword}'| : 'Pizzas menù'"></title >
 	</head>
 	<body>
 		<!-- container -->
 		<div class="container">
-			<h1>Pizzas menù</h1>
-			<hr/>
 			
-			<!-- wrapper add+search -->
-			<div class="d-flex">
+			<!-- header -->
+			<div class="row mt-3">
 			
-				<!-- button "add" -->
-				<div class="mb-3">
-					<a class="btn btn-primary" th:href="@{/pizzas/create}">Add new pizza</a>
+				<!-- title V2 -->
+				<div class="col">
+					<h1><a th:unless="${search}" th:href="@{/pizzas/create}"><i class="fas fa-plus-circle"></i></a>
+					<a th:if="${search}" th:href="@{/}"><i class="fas fa-arrow-circle-left"></i></a>
+					<span th:text="${search} ? |Search result for: '${keyword}'| : 'Pizzas menù'"></h1>
 				</div>
 				
-				<!-- vuoto al centro -->
-				<div class="flex-grow-1"></div >
-				
 				<!-- searchbar -->
-				<form class="col-3" th:action="@{/pizzas}" method="GET">
-					<div class="input-group"> <!-- quando dai una submit fai un GET a /book e passagli {keyword} -->
-						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-					</div>
-				</form>
+				<div th:replace="fragments/resources :: searchbar"></div>
 			</div>
+			<hr/>
 			
 			<!-- success message -->
 			<th:block th:if="${successMessage != null}">
 				<div th:text="${successMessage}" class="alert alert-success" role="alert"></div>
 			</th:block>
 			
-			<!-- table -->
-			<table class="table" th:if="${list.size() > 0}"> <!-- mostra solo se elementi in lista -->
-				<thead>
-					<tr>
-						<th>Pizza</th>
-						<th>Price</th>
-						<th>Description</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="item : ${list}">
-						<td th:text="${item.name}"></td>
-						<td th:text="${item.price}"></td>
-						<td th:text="${item.description}"></td>
-						<td>
-							<a class="me-1" th:href="@{|/pizzas/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
-							<a class="me-2" th:href="@{|/pizzas/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<!-- list -->
+			<ul class="list-group list-group-flush" th:if="${list.size() > 0}"> <!-- mostra solo se elementi in lista -->
+				<li th:each="item : ${list}" class="list-group-item d-flex justify-content-between align-items-start">
+					<span class="fs-4" th:text="|${item.price}€|"></span>
+					<div class="ms-2 me-auto">
+						<div th:text="${item.name}" class="fw-bold fs-4"></div>
+						<!-- <span th:each="ingredient : ${item.ingredients}" th:text="|${ingredient}, |"></span> -->
+						<p class="capitalize text-muted fst-italic" th:text="${#strings.listJoin(item.ingredients, ', ')}"></p> <!-- ^equivalente ma risolve problema ultima virgola -->
+					</div>
+					<a class="me-1 mt-2" th:href="@{|/pizzas/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+					<a class="mt-2" th:href="@{|/pizzas/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+				</li>
+			</ul>
 			
 			<!-- alert if empty -->
 			<div class="alert alert-warning" role="alert" th:unless="${list.size() > 0}">

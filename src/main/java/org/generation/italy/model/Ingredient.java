@@ -15,7 +15,13 @@ public class Ingredient {
 	
 	@NotNull
 	private String ingredient;
-
+	
+	// utility
+	@Override
+	public String toString() {
+		return ingredient;
+	}
+	
 	// getters/setters
 	public Integer getId() {
 		return id;

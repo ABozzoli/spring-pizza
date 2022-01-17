@@ -33,9 +33,11 @@ public class PizzaController {
 	public String list(@RequestParam(name="keyword", required=false) String keyword, Model model) {
 		List<Pizza> result;
 		if(keyword != null && !keyword.isEmpty()) {
+			model.addAttribute("search", true);
 			result = service.findByKeywordSortedByName(keyword);
 			model.addAttribute("keyword", keyword);
 		} else {
+			model.addAttribute("search", false);
 			result = service.findAllSortByName();
 		}
 		model.addAttribute("list", result);
